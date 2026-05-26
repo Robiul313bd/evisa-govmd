@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-card">
+    <div class="page-card__header">
+        <h2>Visa search result</h2>
+        <p>Here is your visa status and document options.</p>
+    </div>
+
+    <form method="get" action="{% url 'visa_result' %}" class="search-form" id="searchForm">
+        {% csrf_token %}
+        <label for="id_query">Visa Number or Passport Number</label>
+        {{ form.query }}
+        <button type="submit" class="button button-primary">Search again</button>
+    </form>
+
+    {% if error %}
+    <div class="result-alert result-alert--warning">{{ error }}</div>
+    {% elif visa %}
+    <div class="result-grid">
+        <div class="result-card">
+            <div class="result-card__header">
+                <h3>{{ visa.first_name }} {{ visa.surname }}</h3>
+                <span class="badge">{{ visa.get_visa_status_display }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Visa Number</strong>
+                <span>{{ visa.visa_number }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Passport Number</strong>
+                <span>{{ visa.passport_number }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Visa Type</strong>
+                <span>{{ visa.get_visa_type_display }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Validity</strong>
+                <span>{{ visa.get_visa_validity_display }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Valid From</strong>
+                <span>{{ visa.visa_valid_from }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Duration</strong>
+                <span>{{ visa.duration_of_stay }} days</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Approval Date</strong>
+                <span>{{ visa.approval_date }}</span>
+            </div>
+            <div class="result-card__row">
+                <strong>Issue Date</strong>
+                <span>{{ visa.issue_date }}</span>
+            </div>
+            <div class="result-actions">
+                <a class="button button-secondary" href="{% url 'download_pdf' visa.pk %}?query={{ visa.visa_number }}">Download PDF</a>
+                <button type="button" class="button button-outline" onclick="window.print()">Print Visa</button>
+            </div>
+        </div>
+
+        <div class="result-card result-card--detail">
+            <div class="result-card__section">
+                <h4>Personal information</h4>
+                <p><strong>Name:</strong> {{ visa.first_name }} {{ visa.surname }}</p>
+                <p><strong>Father\'s Name:</strong> {{ visa.fathers_name|default:'N/A' }}</p>
+                <p><strong>Date of Birth:</strong> {{ visa.date_of_birth }}</p>
+                <p><strong>Citizenship:</strong> {{ visa.citizenship }}</p>
+                <p><strong>PDF header country:</strong> {{ visa.country_header }}</p>
+            </div>
+
+            <div class="result-card__section">
+                <h4>Passport details</h4>
+                <p><strong>Passport Issue Date:</strong> {{ visa.passport_issue_date }}</p>
+                <p><strong>Passport Expiry Date:</strong> {{ visa.passport_expiry_date }}</p>
+                <p><strong>Reference Number:</strong> {{ visa.reference_number|default:'N/A' }}</p>
+            </div>
+
+            <div class="result-card__section">
+                <h4>Invitation details</h4>
+                <p>{{ visa.invitation_letter_text }}</p>
+            </div>
+
+            <div class="result-photo">
+                <h4>Photo</h4>
+                <img src="{{ visa.photo_upload.url }}" alt="Visa photo" class="photo-preview">
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

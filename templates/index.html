@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry visa to the Republic of Moldova</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+
+    <div class="site-wrapper">
+
+        <header class="header-banner">
+            <div class="left-side">
+                <img src="{% static 'assets/logo.png' %}" alt="Moldova Coat of Arms" class="gov-logo">
+                <div class="title-text">
+                    Ministry of Foreign Affairs and European<br> Integration of the Republic of Moldova
+                </div>
+            </div>
+            
+            <div class="right-side">
+                <div class="lang-flags">
+                    <img src="{% static 'assets/flag-md.png' %}" alt="Moldova Flag" class="mini-flag flag-moldova">
+                    <img src="{% static 'assets/flag-gb.png' %}" alt="UK Flag" class="mini-flag">
+                </div>
+                <img src="{% static 'assets/header.png' %}" alt="Visa Moldova" class="visa-logo">
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <a href="{% url 'index' %}" class="nav-item start">Start</a>
+            <a href="#" class="nav-item need-visa">Do I need a visa?</a>
+            <a href="#" class="nav-item apply">Apply now</a>
+            <a href="#" class="nav-item continue">Continue application</a>
+            <a href="#" class="nav-item status">Check your application status</a>
+            <a href="{% url 'check_visa' %}" class="nav-item check">Check Visa</a>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container">
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+
+                <div class="info-box-wrapper">
+
+                    <div class="blue-side-box"></div>
+
+                    <div class="info-box">
+
+                        <h4>
+                            Things you should know
+                        </h4>
+
+                        <a href="#" class="info-btn">
+                            10 things you should know
+                            <br>
+                            about the eVisa
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+            <!-- Main -->
+            <main class="main-content">
+
+                <h2>
+                    Entry visa to the Republic of Moldova
+                </h2>
+
+                <ul class="links-list">
+
+                    <li>
+                        <span class="custom-icon"></span>
+
+                        <a href="#">
+                            Foreign citizens who do not require visa to enter the Republic of Moldova
+                        </a>
+                    </li>
+
+                    <li>
+                        <span class="custom-icon"></span>
+
+                        <a href="#">
+                            List of countries whose nationals require invitations to apply for a visa to enter the Republic of Moldova
+                        </a>
+                    </li>
+
+                    <li>
+                        <span class="custom-icon"></span>
+
+                        <a href="#">
+                            The types of visas
+                        </a>
+                    </li>
+
+                    <li>
+                        <span class="custom-icon"></span>
+
+                        <a href="#">
+                            Visa fees
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="alert-text">
+                    Alert us:
+                    <a href="mailto:evisa@mfa.gov.md">
+                        evisa@mfa.gov.md
+                    </a>
+                </div>
+
+            </main>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-zone">
+
+            <div class="footer-line"></div>
+
+            <div class="footer-bottom-text">
+
+                <div class="version-text">
+                    Version: 1.6.1.0
+                </div>
+
+                <div>
+                    E-mail:
+                    <a href="mailto:evisa@mfa.gov.md">
+                        evisa@mfa.gov.md
+                    </a>
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>

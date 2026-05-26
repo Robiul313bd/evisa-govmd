@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eVisa Moldova</title>
+    <link rel="stylesheet" href="{% static 'css/evisa.css' %}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="app-header">
+            <div class="brand">
+                <img src="{% static 'assets/logo.png' %}" alt="Moldova logo" class="brand-logo">
+                <div>
+                    <h1>Republic of Moldova eVisa</h1>
+                    <p>Secure applicant tracking and visa status validation</p>
+                </div>
+            </div>
+            <nav class="app-nav">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'check_visa' %}">Check Visa</a>
+                <a href="/admin/">Admin</a>
+            </nav>
+        </header>
+
+        <main class="app-main">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="app-footer">
+            <span>eVisa Moldova • Admin panel protected by Django authentication</span>
+            <span>Contact: <a href="mailto:evisa@mfa.gov.md">evisa@mfa.gov.md</a></span>
+        </footer>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay" hidden>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Searching visa...</div>
+    </div>
+
+    <script src="{% static 'js/evisa.js' %}"></script>
+</body>
+</html>

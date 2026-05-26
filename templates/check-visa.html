@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry visa to the Republic of Moldova</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <header class="header-banner">
+            <div class="left-side">
+                <img src="{% static 'assets/logo.png' %}" alt="Moldova Coat of Arms" class="gov-logo">
+                <div class="title-text">
+                    Ministry of Foreign Affairs and European<br> Integration of the Republic of Moldova
+                </div>
+            </div>
+            
+            <div class="right-side">
+                <div class="lang-flags">
+                    <img src="{% static 'assets/flag-md.png' %}" alt="Moldova Flag" class="mini-flag flag-moldova">
+                    <img src="{% static 'assets/flag-gb.png' %}" alt="UK Flag" class="mini-flag">
+                </div>
+                <img src="{% static 'assets/header.png' %}" alt="Visa Moldova" class="visa-logo">
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <a href="{% url 'index' %}" class="nav-item start">Start</a>
+            <a href="#" class="nav-item need-visa">Do I need a visa?</a>
+            <a href="#" class="nav-item apply">Apply now</a>
+            <a href="#" class="nav-item continue">Continue application</a>
+            <a href="#" class="nav-item status">Check your application status</a>
+            <a href="{% url 'check_visa' %}" class="nav-item check">Check Visa</a>
+        </nav>
+
+        <main class="portal-container">
+            <aside class="sidebar-cell">
+                <div class="info-box">
+                    <div class="info-box-title">Things you should know</div>
+                    <a href="#" class="info-btn">10 things you should know about the eVisa</a>
+                </div>
+            </aside>
+
+            <section class="content-cell">
+                <h1 class="page-title">Check visa</h1>
+                <hr class="page-divider">
+                <div class="those-credentials-wrapper" id="dynamicContentBlock">
+                    <h2 class="section-subtitle">Seeking visa</h2>
+                    
+                    <div id="visaSearchBlock" class="{% if visa %}hidden-panel{% else %}visible-panel{% endif %}">
+                        <div class="form-box">
+                            <form id="visaForm" class="form-table" method="get" action="{% url 'check_visa' %}">
+                                <div class="form-left">
+                                    <div class="form-group">
+                                        <label for="visaNumber">Visa number</label>
+                                        <input type="text" id="visaNumber" name="visaNumber" class="form-input{% if visa_error %} invalid{% elif visa_is_valid %} valid{% endif %}" placeholder="Enter Visa Number" autocomplete="off" required aria-describedby="visaNumberError" value="{{ visa_number|default_if_none:'' }}">
+                                        <span class="input-error-message{% if visa_error %} visible{% endif %}" id="visaNumberError" aria-live="polite">{{ visa_error }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="captcha-wrapper">
+                                            <div class="captcha-box" id="captchaValue">------</div>
+                                        </div>
+                                        <span class="refresh-link" id="btnRefreshCaptcha">Refresh</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="verificationCode">Verification code</label>
+                                        <input type="text" id="verificationCode" class="form-input" autocomplete="off" aria-describedby="verificationCodeError">
+                                        <span class="input-error-message" id="verificationCodeError" aria-live="polite"></span>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn-check" id="btnCheckVisa">Check</button>
+                                    </div>
+                                </div>
+                                <div class="form-right"></div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="visaResultContainer" class="{% if visa %}visible-panel{% else %}hidden-panel{% endif %}">
+                        {% if visa %}
+                            <div class="form-box">
+                                <div class="result-card-container">
+                                    <div class="result-card-table">
+                                        <div class="result-photo-cell">
+                                            {% if visa.photo_upload %}
+                                                <img src="{{ visa.photo_upload.url }}" class="applicant-photo" alt="Applicant photo">
+                                            {% else %}
+                                                <img src="{% static 'assets/person.jpg' %}" class="applicant-photo" alt="Applicant photo">
+                                            {% endif %}
+                                        </div>
+                                        <div class="result-info-cell">
+                                            <table class="info-grid">
+                                                <tr><td class="info-label">Surname:</td><td class="info-value">{{ visa.surname }}</td></tr>
+                                                <tr><td class="info-label">First name:</td><td class="info-value">{{ visa.first_name }}</td></tr>
+                                                <tr><td class="info-label">Date of birth:</td><td class="info-value">{{ visa.date_of_birth|date:'d/m/Y' }}</td></tr>
+                                                <tr><td class="info-label">Citizenship:</td><td class="info-value">{{ visa.citizenship }}</td></tr>
+                                                <tr><td class="info-label">Passport number:</td><td class="info-value">{{ visa.passport_number }}</td></tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <hr style="border:none; border-top:1px solid #b4c6c9; margin:5px 0;">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info-label">Visa status:</td>
+                                                    <td class="info-value">{{ visa.get_visa_status_display }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info-label">Visa validity:</td>
+                                                    <td class="info-value">{{ visa.get_visa_validity_display }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info-label">Visa type:</td>
+                                                    <td class="info-value">{{ visa.get_visa_type_display }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info-label">Visit purpose:</td>
+                                                    <td class="info-value">{{ visa.get_visit_purpose_display }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-actions">
+                                    <button type="button" class="btn-another" id="btnAnotherSearch">Another Search</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <div class="modal-overlay" id="modalAlertOverlay">
+            <div class="modal-box">
+                <svg class="modal-icon" id="modalIconSuccess" viewBox="0 0 24 24" style="display:none;">
+                    <circle cx="12" cy="12" r="10" fill="#4CAF50"/>
+                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="#ffffff"/>
+                </svg>
+                <svg class="modal-icon" id="modalIconError" viewBox="0 0 24 24" style="display:none;">
+                    <circle cx="12" cy="12" r="10" fill="#F44336"/>
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="#ffffff"/>
+                </svg>
+                <div class="modal-title" id="modalAlertTitle">Notification</div>
+                <div class="modal-message" id="modalAlertMessage">Message contents...</div>
+                <button class="modal-btn" id="btnModalClose">OK</button>
+            </div>
+        </div>
+
+        <footer class="footer-zone">
+            <div class="footer-line"></div>
+            <div class="footer-bottom-text">
+                <div class="version-text">Version: 1.6.1.0</div>
+                <div>E-mail: <a href="mailto:evisa@mfa.gov.md">evisa@mfa.gov.md</a></div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="{% static 'js/check-visa.js' %}"></script>
+</body>
+</html>
