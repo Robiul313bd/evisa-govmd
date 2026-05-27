@@ -1,0 +1,423 @@
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#fff;
+            color:#333;
+            padding: 0 10px;
+        }
+
+        /* Wrapper */
+        .site-wrapper{
+            max-width:1000px;
+            margin:0 auto;
+            background:#fff;
+        }
+
+        /* Header */
+        .header-banner{
+            background: url('../assets/headerb.jpg') no-repeat center center;
+            background-size:cover;
+            min-height:155px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 20px;
+            position:relative;
+            flex-wrap:wrap;
+            gap:15px;
+        }
+
+        .left-side{
+            display:flex;
+            align-items:center;
+            gap:15px;
+            flex:1;
+            min-width:280px;
+        }
+
+        .gov-logo{
+            height:70px;
+            width:auto;
+        }
+
+        .title-text{
+            color:#fff;
+            font-size:14px;
+            font-weight:normal;
+            text-transform:uppercase;
+            max-width:400px;
+            line-height:1.4;
+        }
+
+        .right-side{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            justify-content:space-between;
+        }
+
+        .lang-flags{
+            display:flex;
+            gap:4px;
+            align-self:flex-start;
+        }
+
+        .flag-moldova{
+            opacity:.7;
+        }
+
+        .mini-flag{
+            width:30px;
+            height:20px;
+            box-shadow:0px 0px 2px rgba(0,0,0,0.3);
+        }
+
+        .visa-logo{
+            height:70px;
+            width:auto;
+        }
+
+        /* Navbar */
+        .navbar{
+            background:#205c9e;
+            display:flex;
+            border-bottom:4px solid #1a497e;
+            padding:0 10px;
+            overflow-x:auto;
+            white-space:nowrap;
+            -webkit-overflow-scrolling:touch;
+        }
+
+        .nav-item{
+            padding:12px 14px;
+            color:#fff;
+            text-decoration:none;
+            font-size:11px;
+            font-weight:bold;
+            text-transform:uppercase;
+            border-top:5px solid transparent;
+            display:inline-block;
+            margin-right:8px;
+            transition:background 0.2s;
+        }
+
+        .nav-item.start{border-top-color:#f7b634;}
+        .nav-item.need-visa{border-top-color:#7016ba;}
+        .nav-item.apply{border-top-color:#a9c23a;}
+        .nav-item.continue{border-top-color:#29b2c2;}
+        .nav-item.status{border-top-color:#ba1616;}
+        .nav-item.check{border-top-color:#f7b634;}
+
+        .nav-item:hover{
+            background:#174678;
+        }
+
+        /* Main Layout */
+        .container{
+            padding:25px 20px;
+            display:flex;
+            gap:25px;
+        }
+
+        /* Sidebar */
+        .sidebar{
+            width:200px;
+        }
+
+        .info-box-wrapper{
+            display:flex;
+        }
+
+        .blue-side-box{
+            width:14px;
+            background:#1c4b75;
+        }
+
+        .info-box{
+            border:1px solid #1c4b75;
+            border-left:none;
+            padding:10px;
+            flex-grow:1;
+        }
+
+        .info-box h4{
+            font-size:12px;
+            margin-bottom:8px;
+        }
+
+        .info-btn{
+            display:block;
+            background:#337ab7;
+            color:#fff;
+            text-align:center;
+            padding:12px 8px;
+            font-size:11px;
+            text-decoration:none;
+            border-radius:4px;
+            font-weight:bold;
+        }
+
+        .info-btn:hover{
+            background:#286090;
+        }
+
+        /* Main Content */
+        .main-content{
+            flex-grow:1;
+        }
+
+        .main-content h2{
+            font-size:24px;
+            margin-bottom:15px;
+            border-bottom:1px dotted #a0a0a0;
+            padding-bottom:10px;
+        }
+
+        /* Links */
+        .links-list{
+            list-style:none;
+        }
+
+        .links-list li{
+            margin-bottom:15px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .links-list a{
+            color:#205c9e;
+            text-decoration:none;
+            font-size:14px;
+        }
+
+        .links-list a:hover{
+            text-decoration:underline;
+        }
+
+        /* Icon */
+        .custom-icon{
+            width:22px;
+            height:18px;
+            background:#fff;
+            border:1.5px solid #6b8cb3;
+            border-top:5px solid #6b8cb3;
+            position:relative;
+            flex-shrink:0;
+        }
+
+        .custom-icon::before{
+            content:"";
+            position:absolute;
+            top:2px;
+            left:2px;
+            width:7px;
+            height:5px;
+            border:1px solid #7ea1c9;
+        }
+
+        .custom-icon::after{
+            content:"";
+            position:absolute;
+            bottom:2px;
+            right:2px;
+            width:6px;
+            height:5px;
+            border-top:1px solid #b0c7e2;
+            border-bottom:1px solid #b0c7e2;
+        }
+
+        /* Alert */
+        .alert-text{
+            margin-top:30px;
+            font-size:12px;
+            font-weight:bold;
+        }
+
+        .alert-text a,
+        .footer-zone a{
+            color:#0000ee;
+        }
+
+        /* Footer */
+        .footer-zone{
+            padding:0 20px 20px;
+        }
+
+        .footer-line{
+            border-top:1px solid #000;
+            opacity:.8;
+            margin-bottom:15px;
+        }
+
+        .footer-bottom-text{
+            display:flex;
+            justify-content:space-between;
+            font-size:11px;
+            color:#666;
+        }
+
+        .version-text{
+            color:#000;
+            opacity:.4;
+        }
+      /* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablet */
+@media (max-width: 992px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:0 10px;
+    }
+
+    .nav-item{
+        margin:4px;
+        font-size:10px;
+        padding:10px;
+        text-align:center;
+    }
+
+    .main-content h2{
+        font-size:22px;
+    }
+
+    .footer-bottom-text{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+    .header-banner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                height: auto;
+            }
+            .left-side {
+                flex-direction: column;
+                align-items: center;
+            }
+            .title-text {
+                max-width: 100%;
+                font-size: 13px;
+            }
+            .right-side {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+            }
+
+    /* Main Layout */
+    .container{
+        flex-direction:column;
+        padding:20px 15px;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .main-content{
+        width:100%;
+    }
+
+    .main-content h2{
+        font-size:20px;
+        line-height:1.4;
+    }
+
+    /* Sidebar */
+    .info-box-wrapper{
+        width:100%;
+    }
+
+    .info-btn{
+        font-size:12px;
+        padding:12px;
+    }
+
+    /* Links */
+    .links-list li{
+        align-items:flex-start;
+    }
+
+    .links-list a{
+        font-size:13px;
+        line-height:1.5;
+        word-break:break-word;
+    }
+
+    /* Footer */
+    .footer-zone{
+        padding:0 15px 20px;
+    }
+
+    .footer-bottom-text{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:8px;
+        font-size:11px;
+    }
+
+    .version-text{
+        order:2;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px){
+
+    .title-text{
+        font-size:12px;
+    }
+
+    .main-content h2{
+        font-size:18px;
+    }
+
+    .links-list a{
+        font-size:12px;
+    }
+
+    .alert-text{
+        font-size:11px;
+        line-height:1.6;
+    }
+
+    .gov-logo{
+        height:50px;
+    }
+
+    .visa-logo{
+        height:45px;
+    }
+
+    .mini-flag{
+        width:26px;
+        height:18px;
+    }
+}
+        

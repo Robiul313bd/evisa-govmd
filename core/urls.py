@@ -2,18 +2,18 @@
 URL configuration for core project.
 """
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views import defaults as default_views
-from visa.views import error_404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('visa.urls')),  # Include visa app URLs
 ]
 
-# Serve media files in development
+# Serve media files in development and testing
+# Note: WhiteNoise serves static files automatically in production
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -22,11 +22,10 @@ if settings.DEBUG:
         path('404/', default_views.page_not_found, kwargs={'exception': Exception("Page not found")}),
         path('500/', default_views.server_error),
     ]
-
-# Catch-all pattern for 404 errors (must be last)
-urlpatterns += [
-    re_path(r'^.*$', error_404, name='catch_all_404'),
-]
+else:
+    # In production (DEBUG=False), also serve media files
+    # Static files are handled by WhiteNoise middleware
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Error handlers
 handler404 = 'visa.views.error_404'

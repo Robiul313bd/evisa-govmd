@@ -22,19 +22,6 @@ class Visa(models.Model):
         (VISA_STATUS_PENDING, 'Pending'),
     ]
 
-    VISA_VALIDITY_15_DAYS = '15_days'
-    VISA_VALIDITY_30_DAYS = '30_days'
-    VISA_VALIDITY_90_DAYS = '90_days'
-    VISA_VALIDITY_180_DAYS = '180_days'
-    VISA_VALIDITY_1_YEAR = '1_year'
-    VISA_VALIDITY_CHOICES = [
-        (VISA_VALIDITY_15_DAYS, '15 Days'),
-        (VISA_VALIDITY_30_DAYS, '30 Days'),
-        (VISA_VALIDITY_90_DAYS, '90 Days'),
-        (VISA_VALIDITY_180_DAYS, '180 Days'),
-        (VISA_VALIDITY_1_YEAR, '1 Year'),
-    ]
-
     ENTRY_SINGLE = 'single_entry'
     ENTRY_DOUBLE = 'double_entry'
     ENTRY_MULTIPLE = 'multiple_entry'
@@ -80,7 +67,7 @@ class Visa(models.Model):
     passport_expiry_date = models.DateField('Passport Expiry Date', blank=False, null=False)
     visa_status = models.CharField('Visa Status', max_length=10, choices=VISA_STATUS_CHOICES, default=VISA_STATUS_VALID, blank=False, null=False)
     visa_valid_from = models.DateField('Visa Valid From', blank=False, null=False)
-    visa_validity = models.CharField('Visa Validity', max_length=20, choices=VISA_VALIDITY_CHOICES, blank=False, null=False)
+    visa_validity = models.DateField('Visa Validity', blank=False, null=False)
     number_of_entries = models.CharField('Number of Entries', max_length=20, choices=ENTRY_CHOICES, blank=False, null=False)
     duration_of_stay = models.IntegerField('Duration of Stay (days)', default=30, blank=False, null=False)
     visa_type = models.CharField('Visa Type', max_length=2, choices=VISA_TYPE_CHOICES, blank=False, null=False)
@@ -219,7 +206,7 @@ class Visa(models.Model):
                 ('Visa Type:', self.get_visa_type_display()),
                 ('Visa Status:', self.get_visa_status_display()),
                 ('Visa Valid From:', str(self.visa_valid_from)),
-                ('Visa Validity:', self.get_visa_validity_display()),
+                ('Visa Validity:', self.visa_validity.strftime('%d/%m/%Y')),
                 ('Number of Entries:', self.get_number_of_entries_display()),
                 ('Duration of Stay:', f"{self.duration_of_stay} days"),
                 ('Visit Purpose:', self.get_visit_purpose_display()),

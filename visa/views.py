@@ -45,7 +45,7 @@ def check_visa(request):
                         'citizenship': visa.citizenship,
                         'passport_number': visa.passport_number,
                         'visa_status': visa.get_visa_status_display(),
-                        'visa_validity': visa.get_visa_validity_display(),
+                        'visa_validity': visa.visa_validity.strftime('%d/%m/%Y'),
                         'visa_type': visa.get_visa_type_display(),
                         'visit_purpose': visa.get_visit_purpose_display(),
                         'photo_url': visa.photo_upload.url if visa.photo_upload else None,

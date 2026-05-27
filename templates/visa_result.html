@@ -37,7 +37,7 @@
             </div>
             <div class="result-card__row">
                 <strong>Validity</strong>
-                <span>{{ visa.get_visa_validity_display }}</span>
+                <span>{{ visa.visa_validity|date:"d/m/Y" }}</span>
             </div>
             <div class="result-card__row">
                 <strong>Valid From</strong>

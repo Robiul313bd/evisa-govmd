@@ -1,4 +1,4 @@
-from django.contrib.admin.widgets import AdminDateWidget, AdminFileWidget
+from django.contrib.admin.widgets import AdminFileWidget
 from django import forms
 
 from .models import Visa
@@ -15,19 +15,19 @@ class VisaAdminForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'vTextField form-control'}),
             'fathers_name': forms.TextInput(attrs={'class': 'vTextField form-control'}),
             'reference_number': forms.TextInput(attrs={'class': 'vTextField form-control'}),
-            'date_of_birth': AdminDateWidget(attrs={'class': 'vDateField form-control'}),
+            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
             'citizenship': forms.TextInput(attrs={'class': 'vTextField form-control'}),
-            'passport_issue_date': AdminDateWidget(attrs={'class': 'vDateField form-control'}),
-            'passport_expiry_date': AdminDateWidget(attrs={'class': 'vDateField form-control'}),
+            'passport_issue_date': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
+            'passport_expiry_date': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
             'visa_status': forms.Select(attrs={'class': 'vSelect form-control'}),
-            'visa_valid_from': AdminDateWidget(attrs={'class': 'vDateField form-control'}),
-            'visa_validity': forms.Select(attrs={'class': 'vSelect form-control'}),
+            'visa_valid_from': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
+            'visa_validity': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
             'number_of_entries': forms.Select(attrs={'class': 'vSelect form-control'}),
             'duration_of_stay': forms.NumberInput(attrs={'class': 'vIntegerField form-control'}),
             'visa_type': forms.Select(attrs={'class': 'vSelect form-control'}),
             'visit_purpose': forms.Select(attrs={'class': 'vSelect form-control'}),
-            'issue_date': AdminDateWidget(attrs={'class': 'vDateField form-control'}),
-            'approval_date': AdminDateWidget(attrs={'class': 'vDateField form-control'}),
+            'issue_date': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
+            'approval_date': forms.DateInput(attrs={'type': 'date', 'class': 'vDateField form-control'}),
             'invitation_letter_text': forms.Textarea(attrs={'class': 'vLargeTextField form-control', 'rows': 4}),
             'photo_upload': AdminFileWidget(attrs={'class': 'vClearableFileInput form-control-file'}),
         }
