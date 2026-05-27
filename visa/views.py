@@ -87,3 +87,17 @@ def download_visa_pdf(request, visa_id):
         return response
     except Exception:
         raise Http404('Unable to download PDF document.')
+
+
+def error_404(request, exception=None):
+    """
+    Custom 404 error handler.
+    """
+    return render(request, '404.html', status=404)
+
+
+def error_500(request):
+    """
+    Custom 500 error handler.
+    """
+    return render(request, '500.html', status=500)

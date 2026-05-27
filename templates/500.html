@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server Error</title>
+    <link rel="stylesheet" href="{% static 'css/evisa.css' %}">
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #dc3545;
+            margin: 0;
+        }
+        
+        .error-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .error-message {
+            font-size: 18px;
+            color: #666;
+            margin: 20px 0 40px 0;
+            max-width: 500px;
+        }
+        
+        .error-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .error-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .error-link:hover {
+            background-color: #0052a3;
+        }
+        
+        .error-link.secondary {
+            background-color: #666;
+        }
+        
+        .error-link.secondary:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="app-header">
+            <div class="brand">
+                <img src="{% static 'assets/logo.png' %}" alt="Moldova logo" class="brand-logo">
+                <div>
+                    <h1>Republic of Moldova eVisa</h1>
+                    <p>Secure applicant tracking and visa status validation</p>
+                </div>
+            </div>
+            <nav class="app-nav">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'check_visa' %}">Check Visa</a>
+                <a href="/admin/">Admin</a>
+            </nav>
+        </header>
+
+        <main class="app-main">
+            <div class="error-container">
+                <h1 class="error-code">500</h1>
+                <h2 class="error-title">Server Error</h2>
+                <p class="error-message">
+                    Sorry, something went wrong on our server. Our team has been notified and is working to fix the issue.
+                </p>
+                <div class="error-links">
+                    <a href="{% url 'index' %}" class="error-link">Go to Home</a>
+                    <a href="{% url 'check_visa' %}" class="error-link secondary">Check Visa Status</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <span>eVisa Moldova • Admin panel protected by Django authentication</span>
+            <span>Contact: <a href="mailto:evisa@mfa.gov.md">evisa@mfa.gov.md</a></span>
+        </footer>
+    </div>
+</body>
+</html>
